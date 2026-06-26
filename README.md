@@ -73,14 +73,6 @@ Open `http://localhost:8501` in your browser.
 
 > **Note:** The first generation may take 30–60 seconds on HF free tier while the model warms up.
 
-## Screenshots
-
-### 1. App with recorded audio — ready to generate
-![App top view](docs/screenshots/screenshot-top.png)
-
-### 2. Generated result — transcript, prompt, models, image
-![App result view](docs/screenshots/screenshot-result.png)
-
 ## Models
 
 | Role | Model |
