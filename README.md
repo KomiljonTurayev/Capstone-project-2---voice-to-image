@@ -61,7 +61,7 @@ Open `http://localhost:8501` in your browser.
 
 ## Live Demo
 
-[View on Hugging Face Spaces](<your-hf-space-url>)
+[View on Hugging Face Spaces](https://huggingface.co/spaces/IKomil/voice-to-image)
 
 ## Usage
 
