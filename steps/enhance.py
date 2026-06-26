@@ -19,4 +19,5 @@ def enhance(transcript: str) -> str:
             {"role": "user", "content": transcript},
         ],
     )
-    return response.choices[0].message.content.strip()
+    content = response.choices[0].message.content or ""
+    return content.strip()

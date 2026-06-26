@@ -49,3 +49,16 @@ def test_enhance_passes_transcript_as_last_user_message():
     call_kwargs = mock_client.chat.completions.create.call_args[1]
     messages = call_kwargs["messages"]
     assert messages[-1] == {"role": "user", "content": "a foggy forest at dawn"}
+
+def test_enhance_handles_none_content():
+    mock_response = MagicMock()
+    mock_response.choices[0].message.content = None
+
+    with patch("steps.enhance.OpenAI") as mock_openai:
+        mock_client = MagicMock()
+        mock_openai.return_value = mock_client
+        mock_client.chat.completions.create.return_value = mock_response
+
+        result = enhance("test transcript")
+
+    assert result == ""
