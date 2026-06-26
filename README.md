@@ -63,6 +63,16 @@ Open `http://localhost:8501` in your browser.
 
 [View on Hugging Face Spaces](https://huggingface.co/spaces/IKomil/voice-to-image)
 
+## Screenshots
+
+| Record Tab | Upload Tab |
+|---|---|
+| ![Record tab](dashboard.png) | ![Upload tab](dashboard_upload.png) |
+
+| Recording in Progress | Generated Image |
+|---|---|
+| ![Recording](voice_to_image.png) | ![Generated image](generated.png) |
+
 ## Usage
 
 1. Open the **🎤 Record** tab and click the microphone to record your idea
