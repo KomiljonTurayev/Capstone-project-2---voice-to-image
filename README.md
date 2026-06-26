@@ -19,10 +19,10 @@ Convert a spoken description into an AI-generated image in three steps:
 ```
 [Your voice]
      │
-     ▼  OpenAI Whisper
+     ▼  HF Whisper Large v3
 [Transcript: "a cat on a snowy mountain"]
      │
-     ▼  GPT-4o
+     ▼  Claude Haiku
 [Image prompt: "A majestic cat perched atop snow-capped peaks, golden hour..."]
      │
      ▼  Stable Diffusion XL (HF)
@@ -44,11 +44,11 @@ pip install -r requirements.txt
 ```bash
 cp .env.example .env
 # Edit .env and fill in your keys:
-# OPENAI_API_KEY=sk-...
+# ANTHROPIC_API_KEY=sk-ant-...
 # HF_TOKEN=hf_...
 ```
 
-Get your OpenAI key at [platform.openai.com](https://platform.openai.com).  
+Get your Anthropic key at [console.anthropic.com](https://console.anthropic.com).  
 Get your HF token at [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens) (read access is enough).
 
 ### 3. Run
@@ -75,14 +75,18 @@ Open `http://localhost:8501` in your browser.
 
 ## Screenshots
 
-<!-- Add screenshots here after running the app -->
+### 1. App with recorded audio — ready to generate
+![App top view](docs/screenshots/screenshot-top.png)
+
+### 2. Generated result — transcript, prompt, models, image
+![App result view](docs/screenshots/screenshot-result.png)
 
 ## Models
 
 | Role | Model |
 |---|---|
-| Speech-to-Text | OpenAI `whisper-1` |
-| Prompt Enhancement | OpenAI `gpt-4o` |
+| Speech-to-Text | HF `openai/whisper-large-v3` |
+| Prompt Enhancement | Anthropic `claude-haiku-4-5` |
 | Image Generation | `stabilityai/stable-diffusion-xl-base-1.0` via HF Inference API |
 
 ## Project Structure
@@ -92,8 +96,8 @@ voice-to-image/
 ├── app.py          # Streamlit UI
 ├── pipeline.py     # Pipeline orchestrator + PipelineResult dataclass
 ├── steps/
-│   ├── transcribe.py   # Whisper STT
-│   ├── enhance.py      # GPT-4o prompt enhancement
+│   ├── transcribe.py   # HF Whisper STT
+│   ├── enhance.py      # Claude Haiku prompt enhancement
 │   └── generate.py     # HF Stable Diffusion image generation
 ├── logger.py       # Structured console logging
 └── requirements.txt
