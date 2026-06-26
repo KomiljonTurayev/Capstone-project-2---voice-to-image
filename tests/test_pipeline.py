@@ -5,7 +5,7 @@ from pipeline import run, PipelineResult
 
 @pytest.fixture(autouse=True)
 def set_env(monkeypatch):
-    monkeypatch.setenv("OPENAI_API_KEY", "test-key")
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "test-key")
     monkeypatch.setenv("HF_TOKEN", "test-token")
 
 def test_run_returns_pipeline_result_with_all_fields():
@@ -19,8 +19,8 @@ def test_run_returns_pipeline_result_with_all_fields():
     assert result.transcript == "a sunset"
     assert result.enhanced_prompt == "A vivid sunset..."
     assert result.image == b"PNG_BYTES"
-    assert result.models["stt"] == "whisper-1"
-    assert result.models["llm"] == "gpt-4o"
+    assert result.models["stt"] == "openai/whisper-large-v3"
+    assert result.models["llm"] == "claude-haiku-4-5-20251001"
     assert result.models["image"] == "stabilityai/stable-diffusion-xl-base-1.0"
     assert result.duration_seconds >= 0
 
@@ -43,7 +43,7 @@ def test_run_raises_runtime_error_on_generation_failure():
             run(b"audio_bytes")
 
 def test_run_raises_on_missing_env_vars(monkeypatch):
-    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
     monkeypatch.delenv("HF_TOKEN", raising=False)
     with pytest.raises(RuntimeError, match="Missing required environment variables"):
         run(b"audio_bytes")

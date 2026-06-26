@@ -20,7 +20,7 @@ class PipelineResult:
     duration_seconds: float
 
 def run(audio_bytes: bytes, filename: str = "audio.wav") -> PipelineResult:
-    missing = [k for k in ("OPENAI_API_KEY", "HF_TOKEN") if not os.environ.get(k)]
+    missing = [k for k in ("ANTHROPIC_API_KEY", "HF_TOKEN") if not os.environ.get(k)]
     if missing:
         raise RuntimeError(f"Missing required environment variables: {', '.join(missing)}")
 

@@ -1,8 +1,8 @@
 # steps/enhance.py
 import os
-from openai import OpenAI
+import anthropic
 
-ENHANCE_MODEL = "gpt-4o"
+ENHANCE_MODEL = "claude-haiku-4-5-20251001"
 _SYSTEM_PROMPT = (
     "You are an expert at writing detailed image generation prompts. "
     "Given a short description, expand it into a vivid, detailed prompt "
@@ -11,13 +11,12 @@ _SYSTEM_PROMPT = (
 )
 
 def enhance(transcript: str) -> str:
-    client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
-    response = client.chat.completions.create(
+    client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+    message = client.messages.create(
         model=ENHANCE_MODEL,
-        messages=[
-            {"role": "system", "content": _SYSTEM_PROMPT},
-            {"role": "user", "content": transcript},
-        ],
+        max_tokens=1024,
+        system=_SYSTEM_PROMPT,
+        messages=[{"role": "user", "content": transcript}],
     )
-    content = response.choices[0].message.content or ""
+    content = message.content[0].text if message.content else ""
     return content.strip()

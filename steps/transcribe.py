@@ -1,13 +1,10 @@
 # steps/transcribe.py
-import io
 import os
-from openai import OpenAI
+from huggingface_hub import InferenceClient
 
-WHISPER_MODEL = "whisper-1"
+WHISPER_MODEL = "openai/whisper-large-v3"
 
 def transcribe(audio_bytes: bytes, filename: str = "audio.wav") -> str:
-    client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
-    audio_file = io.BytesIO(audio_bytes)
-    audio_file.name = filename
-    result = client.audio.transcriptions.create(model=WHISPER_MODEL, file=audio_file)
+    client = InferenceClient(token=os.environ["HF_TOKEN"])
+    result = client.automatic_speech_recognition(audio_bytes, model=WHISPER_MODEL)
     return result.text
