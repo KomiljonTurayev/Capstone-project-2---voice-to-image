@@ -65,13 +65,9 @@ Open `http://localhost:8501` in your browser.
 
 ## Screenshots
 
-| Record Tab | Upload Tab |
-|---|---|
-| ![Record tab](dashboard.png) | ![Upload tab](dashboard_upload.png) |
-
-| Recording in Progress | Generated Image |
-|---|---|
-| ![Recording](voice_to_image.png) | ![Generated image](generated.png) |
+| Record Tab | Upload Tab | Recording in Progress |
+|---|---|---|
+| ![Record tab](dashboard.png) | ![Upload tab](dashboard_upload.png) | ![Recording](voice_to_image.png) |
 
 ## Usage
 
